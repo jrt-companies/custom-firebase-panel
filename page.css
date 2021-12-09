@@ -1,0 +1,133 @@
+body {
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--colorBlack);
+    background: var(--colorWhite);
+}
+
+header {
+    padding: 0 20px 0 10px;
+    width: 100%;
+    height: 55px;
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--colorPrimaryLight);
+}
+header h1 {
+    font-size: 1.2em;
+    color: var(--colorWhite);
+}
+
+main {
+    min-height: 100%;
+    display: flex;
+}
+
+main nav {
+    padding: 10px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 15%;
+    background: var(--colorPrimaryLight);
+    overflow-x: scroll;
+}
+main nav .main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+main nav a {
+    color: var(--colorWhite);
+    text-decoration: none;
+}
+main nav .more {
+    margin-bottom: 60px;
+    width: 100%;
+}
+main nav .more a {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    color: var(--colorMattWhite);
+    background: var(--colorPrimary);
+}
+
+#content {
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    overflow-y: scroll;
+}
+
+#content h3 {
+    font-size: 2em;
+}
+
+#content #table {
+    width: 100%;
+}
+#content #table table {
+    margin-bottom: 30px;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+    box-shadow: 2px 2px 8px var(--boxShadowGray);
+}
+#content #table table thead{
+    background: var(--colorPrimaryLight);
+}
+#content #table table tr th, #content #table table tr td {
+    padding: 10px 20px;
+    text-align: left;
+}
+#content #table table tr:first-child {
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+}
+#content #table table tr th {
+    color: var(--colorPrimaryLight);
+}
+#content #table table tr:nth-child(odd)  {
+    background: var(--colorWhite);
+}
+#content #table table tr .buttons {
+    display: flex;
+    gap: 2px;
+}
+#content #table table tr .delete,
+#content #table table tr .edit  {
+    padding: 2px 2px;
+    border-radius: 25px;
+    cursor: pointer;
+    transform: translateX(-10px);
+}
+#content #table table tr .delete  {
+    opacity: 0.4;
+    color: var(--colorError);
+}
+#content #table table tr .delete:hover {
+    opacity: 1;
+}
+#content #table table tr .edit  {
+    padding: 2px 10px;
+    color: var(--colorPrimaryLight);
+}
+#content #table table tr .edit:hover  {
+    color: var(--colorWhite);
+    background: var(--colorPrimaryLight);
+}
+
+#loadingElement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
