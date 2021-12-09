@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue';
+}
+
+:root {
+    --colorPrimary: #004180;
+    --colorPrimaryLight: #005A87;
+    --colorWhite: #FFFFFF;
+    --colorMattWhite: #F2F2F2;
+    --colorGray: #818181;
+    --colorDarkGray: #222222;
+    --colorBlack: #000000;
+
+    --colorError: #CA3737;
+    --colorSuccess: #37ca37;
+    
+    --customEasySpinnerSize: 20px;
+
+    --boxShadowGray: rgba(25, 25, 25, 0.2);
+}
+
+body {
+    height: 0px;
+    min-height: 100vh;
+    width: 100%;
+    background: var(--colorMattWhite);
+}
+
+a {
+    text-decoration: none;
+}
+
+form input,
+form textarea {
+    padding: 5px 10px;
+    height: 40px;
+    width: 250px;
+    outline: none;
+    border: 1px solid var(--colorDarkGray);
+    border-radius: 10px;
+    font-size: 14px;
+    background: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+form input[type=submit] {
+    width: 200px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: none;
+    color: var(--colorWhite);
+    background: var(--colorPrimaryLight);
+}
+form textarea {
+    height: calc(40px*3);
+    padding-top: 10px;
+    resize: vertical;
+}
+form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 5px 10px;
+    height: 40px;
+    position: relative;
+    outline: none;
+    border: 1px solid var(--colorDarkGray);
+    border-radius: 10px;
+    font-size: 14px;
+    background-image:
+    linear-gradient(45deg, transparent 50%, var(--colorPrimary) 50%),
+    linear-gradient(135deg, var(--colorPrimary) 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px),
+        100% 0;
+    background-size:
+        5px 5px,
+        5px 5px,
+        40px 40px;
+    background-repeat: no-repeat;
+}
+form select:active {
+    background-image:
+    linear-gradient(135deg, transparent 50%, var(--colorWhite) 50%),
+    linear-gradient(45deg, var(--colorWhite) 50%, transparent 50%),
+    linear-gradient(to right, var(--colorPrimary), var(--colorPrimary));
+}
+form input[type=file] {
+    display: none;
+}
+.customInputFile {
+    padding: 5px 10px;
+    height: 40px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+    color: var(--colorGray);
+    border: 1px solid var(--colorDarkGray);
+    border-radius: 10px;
+}
+
+.customInputText {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.customInputText label {
+    padding: 2px;
+    top: 10px;
+    left: 8px;
+    position: absolute;
+    color: var(--colorGray);
+    font-size: 14px;
+    transition: .2s ease-in-out;
+}
+.customInputText input:focus,
+.customInputText textarea:focus {
+    border: 1px solid var(--colorPrimary);
+}
+.customInputText input:focus + label,
+.customInputText textarea:focus + label {
+    top: -0.5em;
+    color: var(--colorPrimary);
+    font-size: 12px;
+    background: var(--colorWhite);
+}
+.customInputText input:not(:placeholder-shown) + label,
+.customInputText textarea:not(:placeholder-shown) + label {
+    top: -0.5em;
+    color: var(--colorPrimary);
+    font-size: 12px;
+    background: var(--colorWhite);
+}
+.customInputText input::placeholder,
+.customInputText textarea::placeholder {
+    color: transparent;
+}
+
+.customInputDate {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.customInputDate label {
+    font-size: 12px;
+    margin-bottom: 2px;
+    color: var(--colorGray);
+}
+
+.customInputCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.customInputCheckbox input[type=checkbox] {
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    max-width: 15px;
+    max-height: 15px;
+    position: relative;
+    border-radius: 4px;
+}
+.customInputCheckbox input:checked {
+    background: var(--colorPrimaryLight);
+}
+.customInputCheckbox input:checked::after {
+    top: 50%;
+    left: 50%;
+    content: '';
+    position: absolute;
+    transform: translate(-50%, -55%) rotate(45deg);
+    height: 5px;
+    width: 2.5px;
+    border-bottom: 2px solid var(--colorWhite);
+    border-right: 2px solid var(--colorWhite);
+}
+.customInputCheckbox label {
+    margin-right: auto;
+}
+
+.customEasySpinner {
+    height: var(--customEasySpinnerSize);
+    width: var(--customEasySpinnerSize);
+    position:relative;
+    margin: -(var(--customEasySpinnerSize)/2) 0 0 -(var(--customEasySpinnerSize)/2);
+    -webkit-animation: rotation 1s infinite linear;
+    -moz-animation: rotation 1s infinite linear;
+    -o-animation: rotation 1s infinite linear;
+    animation: rotation 1s infinite linear;
+    border: calc(var(--customEasySpinnerSize)/10) solid var(--colorGray);
+    border-radius:100%;
+}
+.customEasySpinner:before {
+    content:"";
+    display:block;
+    position:absolute;
+    left: calc(calc(var(--customEasySpinnerSize)/10)*-1);
+    top: calc(calc(var(--customEasySpinnerSize)/10)*-1);
+    height:100%;
+    width:100%;
+    border-top: calc(var(--customEasySpinnerSize)/10) solid var(--colorPrimary);
+    border-left:calc(var(--customEasySpinnerSize)/10) solid transparent;
+    border-bottom:calc(var(--customEasySpinnerSize)/10) solid transparent;
+    border-right:calc(var(--customEasySpinnerSize)/10) solid transparent;
+    border-radius:100%;
+}
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(359deg);}
+}
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(359deg);}
+}
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to {-o-transform: rotate(359deg);}
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}
