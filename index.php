@@ -89,7 +89,7 @@
         const db = getFirestore(app);
         
         // Fill the table on the site
-        const querySnapshot = await getDocs(collection(db, "users"));
+        const querySnapshot = await getDocs(collection(db, "<?php echo $customizeJson['panel']['tabs'][$startTap]['db'] ?>"));
         querySnapshot.forEach((doc) => {
             addTableRow([
                 <?php
