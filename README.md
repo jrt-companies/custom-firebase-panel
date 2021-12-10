@@ -1,7 +1,7 @@
 # Custom Firebase Panel
 ### Write JSON
 #### Standard JSON
-`
+```
 {
     "seo": {
         "title": "Costum Panel Title",
@@ -54,4 +54,4 @@
         "projectId": ""
     }
 }
-`
+```
