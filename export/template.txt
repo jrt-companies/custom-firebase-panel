@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO -->
+    <title>{{SEO_TITLE}}</title>
+    <meta name="desc" content="{{SEO_DESC}}">
+    <meta name="robots" content="{{SEO_CRAWL}}">
+    <!-- Link -->
+    <link rel="stylesheet" href="page.css">
+    <link rel="stylesheet" href="assets/docs/css/main/get.css">
+    <script src="https://kit.fontawesome.com/b0b871fd53.js" crossorigin="anonymous"></script>
+    <script src="page.js"></script>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    :root {
+        --colorPrimary: {{STYLE_COLOR_PRIMARY}};
+        --colorPrimaryLight: {{STYLE_COLOR_PRIMARYLIGHT}};
+    }
+</style>
+<body>
+    <header>
+        <a href="."><h1>{{PANEL_NAME}}</h1></a>
+    </header>
+    <main>
+        <nav>
+            <div class="main">
+                {{PANEL_TABS}}
+            </div>
+            {{PANEL_SUPPORT}}
+        </nav>
+        <section id="content">
+            <h3><i class="far {{PANEL_STARTTAB_ICON}}"></i> {{PANEL_STARTTAB_TITLE}}</h3>
+            <section id="table">
+                <table>
+                    <thead>
+                        <tr>
+                            {{PANEL_TABLE_COLUMNS}}
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="loadingElement">
+                    <div class="customEasySpinner"></div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script type="module">
+        let table = document.querySelector('table tbody');
+        let loadingElement = document.getElementById('loadingElement');
+
+        // Import firebase scripts
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
+        import { getFirestore, collection, getDocs, addDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
+
+        // Config firebase connection
+        const firebaseConfig = {
+            apiKey: "{{FIREBASE_APIKEY}}",
+            authDomain: "{{FIREBASE_AUTHDOMAIN}}",
+            projectId: "{{FIREBASE_PROJECTID}}"
+        };
+
+        // Initialize connection
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Fill the table on the site
+        const querySnapshot = await getDocs(collection(db, "{{PANEL_STARTTAB_DB}}"));
+        querySnapshot.forEach((doc) => {
+            addTableRow([
+                {{PANEL_COLUMN_DOCS}}
+            ], table, true);
+        });
+        loadingElement.style.display = 'none';
+    </script>
+</body>
+</html>
